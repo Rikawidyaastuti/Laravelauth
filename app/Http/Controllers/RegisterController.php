@@ -33,4 +33,28 @@ class RegisterController extends Controller
         return response()
             ->json(['data' => $user,'access_token' => $token, 'token_type' => 'Bearer', ]);
     }
+    public function register_page()
+    {
+        $data['title'] = 'Register';
+        return view('register', $data);
+    }
+
+    public function register_action(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required',
+            'password_confirm' => 'required|same:password',
+        ]);
+
+        $user = new User([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        $user->save();
+
+        return redirect()->route('login')->with('success', 'Registration success. Please login!');
+    }
 }
