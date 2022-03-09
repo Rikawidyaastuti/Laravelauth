@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
-class Changepassword extends Controller
+
+class ChangepasswordController extends Controller
 {
     public function password()
     {
         $data['title'] = 'Change Password';
-        return view('password', $data);
+        return view('changepassword', $data);
     }
 
     public function password_action(Request $request)
