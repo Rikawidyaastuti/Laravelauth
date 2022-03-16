@@ -26,3 +26,4 @@ Route::get('login', [LoginController::class, 'login'])->name('login');
 Route::post('login', [LoginController::class, 'login_action'])->name('login.action');
 Route::get('password', [ChangepasswordController::class, 'password'])->name('password');
 Route::post('password', [ChangepasswordController::class, 'password_action'])->name('password.action');
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
